@@ -81,7 +81,7 @@ class RentalController extends Controller
     {
         // return dd($request);
         Datamobil::create([
-            'id'            => $request->id,
+            // 'id'            => $request->id,
             'nama_mobil'    => $request->nama_mobil,
             'nopol_mobil'   => $request->nopol_mobil,
             'warna_mobil'   => $request->warna_mobil,
