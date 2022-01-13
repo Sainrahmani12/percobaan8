@@ -57,21 +57,6 @@
     <input type="number" name="jumlah_hari" class="form-control">
   </div>
 
-  <!-- <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Supir</label>
-    <select class=" form-select input-fixed" name="jumlah_hari" required>
-      <option value selected="">--Pilih Jumlah Hari--</option>
-      @foreach($supir as $s)
-      <option value="{{$s->id}}">{{$s->nama}}</option>
-      @endforeach
-    </select>
-    @error('supir_id')
-    <div class="invalid-feedback" style="width: 300px !important;" role="alert">
-      <strong>{{$message}}</strong>
-    </div>
-    @enderror
-  </div> -->
-  
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Foto Peminjam</label>
     <input type="file" name="foto_peminjam" class="form-control">

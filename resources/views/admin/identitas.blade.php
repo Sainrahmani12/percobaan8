@@ -71,6 +71,15 @@
                                             </select>
                                         </div>
                                         <div class="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">Peminjaman</label>
+                                            <input type="date" name="peminjaman" class="form-control">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">Pengembalian</label>
+                                            <input type="date" name="pengembalian" class="form-control">
+                                        </div>
+                                        <div class="mb-3">
                                             <label for="exampleInputPassword1" class="form-label">Foto Peminjam</label>
                                             <input type="file" name="foto_peminjam" value="{{ $i->foto_peminjam }}" class="form-control">
                                         </div>
@@ -93,7 +102,6 @@
             @endforeach
         </tbody>
     </table>
-    <a href="/tambahid"><button type="button" class="btn btn-success">Create Identity</button></a>
 </div>
 </div>
 

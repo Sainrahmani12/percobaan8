@@ -89,7 +89,7 @@
     </div>
 </section>
 <!-- tagihan -->
-<section id="tagihan">
+<section id="tagihan" class="container">
     <h1 class="text-center dt-mobil">Tagihan Peminjaman Mobil</h1>
     <div class="row text-center">
         @foreach ($identitas as $i)
