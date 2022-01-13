@@ -231,5 +231,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+    'aliases' => [
+
+        'Cloudinary' => CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary::class,
+    ]
 
 ];

@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RentalController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\IdentitasController;
+use App\Http\Controllers\ImageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,3 +63,6 @@ Route::delete('/hapusupir/{id}', [App\Http\Controllers\SupirController::class, '
 Route::get('/landing', [App\Http\Controllers\UserController::class, 'index'])->name('user');
 Route::get('/pemesanan', [App\Http\Controllers\UserController::class, 'pesan'])->name('pemesanan');
 Route::post('/pesanid', [App\Http\Controllers\UserController::class, 'store'])->name('pesanid');
+
+
+Route::resource('images', ImageController::class);
