@@ -23,7 +23,7 @@
                 <td>{{$i->id}}</td>
                 <td>{{$i->nik}}</td>
                 <td>{{$i->user->name}}</td>
-                <td>{{$i->datamobil->nama_mobil}}</td>
+                <td>{{$i->datamobil?->nama_mobil}}</td>
                 <td>{{$i->jaminan}}</td>
                 <td>{{$i->supir?->nama}}</td>
                 <td><img src="{{ $i->foto_peminjam }}" width="75" alt=""></td>
