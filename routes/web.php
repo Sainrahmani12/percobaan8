@@ -18,10 +18,6 @@ use App\Http\Controllers\ImageController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
-
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\RentalController::class, 'index'])->name('dashboard');
@@ -60,7 +56,7 @@ Route::delete('/hapusupir/{id}', [App\Http\Controllers\SupirController::class, '
 
 
 // USER
-Route::get('/landing', [App\Http\Controllers\UserController::class, 'index'])->name('user');
+Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('user');
 Route::get('/pemesanan', [App\Http\Controllers\UserController::class, 'pesan'])->name('pemesanan');
 Route::post('/pesanid', [App\Http\Controllers\UserController::class, 'store'])->name('pesanid');
 
