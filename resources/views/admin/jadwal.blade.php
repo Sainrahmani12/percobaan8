@@ -19,7 +19,7 @@
                         <tr>
                             <td>{{$i->id}}</td>
                             <td>{{$i->user->name}}</td>
-                            <td>{{$i->datamobil->nama_mobil}}</td>
+                            <td>{{$i->datamobil?->nama_mobil}}</td>
                             <td>{{$i->peminjaman}}</td>
                             <td>{{$i->pengembalian}}</td>
                         </tr>
