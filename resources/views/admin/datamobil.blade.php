@@ -23,7 +23,7 @@
                             <td>{{$m->nopol_mobil}}</td>
                             <td>{{$m->warna_mobil}}</td>
                             <td>{{$m->hargasewa_mobil}}/hr</td>
-                            <td><img src="{{url('storage/' .$m->gambar_mobil)}}" width="100" ></td>
+                            <td><img src="{{ $m->gambar_mobil }}" width="100" ></td>
                             <td>
                                <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalmobil{{$m->id}}"><i class="fas fa-pen ms-2"></i></button>
                     

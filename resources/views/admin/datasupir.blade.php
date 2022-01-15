@@ -21,7 +21,7 @@
                             <td>{{$s->nama}}</td>
                             <td>{{$s->alamat}} </td>
                             <td>{{$s->umur}}</td>
-                            <td><img src="{{url('storage/' .$s->foto)}}" width="75px" alt=""></td>
+                            <td><img src="{{ $s->foto }}" width="75px" alt=""></td>
                             <td>
                                 <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalsupir{{$s->id}}"> <i class="fas fa-pen ms-2"></i></button>
 

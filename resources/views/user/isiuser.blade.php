@@ -20,7 +20,7 @@
             <div class="col-3 mt-2">
                 <div class="card h-100">
                     <div class="gambar w-100 container mt-5">
-                        <img src="{{url('storage/' .$m->gambar_mobil)}}" class="card-img-top" alt="...">
+                        <img src="{{ $m->gambar_mobil }}" class="card-img-top" alt="...">
                     </div>
                     <div class="card-body text-center">
                         <h2 class="dt-mobil1">{{$m->nama_mobil}}</h2>
@@ -45,7 +45,7 @@
             <div class="col-3 mt-2">
                 <div class="card h-100">
                     <div class="gambar w-100 container mt-5">
-                        <img src="{{url('storage/' .$s->foto)}}" class="card-img-top" alt="...">
+                        <img src="{{ $s->foto }}" class="card-img-top" alt="...">
                     </div>
                     <div class="card-body text-center">
                         <h2 class="dt-mobil1">{{$s->nama}}</h2>
@@ -96,13 +96,13 @@
         <div class="col-3 mt-2">
             <div class="card h-100">
                 <div class="gambar w-50 container mt-5">
-                    <img src="{{url('storage/' .$i->foto_peminjam)}}" class="card-img-top" alt="...">
+                    <img src="{{ $i->foto_peminjam }}" class="card-img-top" alt="...">
                 </div>
                 <div class="card-body text-center">
                     <h2 class="dt-mobil1">{{$i->user->name}}</h2>
                     <p class="dt-mobil1 mt-3">{{$i->datamobil->nama_mobil}}</p>
                     <p class="dt-mobil1 mt-3">{{$i->datamobil->nopol_mobil}}</p>
-                    <p class="dt-mobil1 mt--3">{{number_format ($i['datamobil->hargasewa_mobil'] * $i['jumlah_hari'])}}</p>
+                    <p class="dt-mobil1 mt--3">{{number_format ($i->datamobil->hargasewa_mobil * $i->jumlah_hari)}}.000</p>
                 </div>
             </div>
         </div>

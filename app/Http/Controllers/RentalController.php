@@ -6,28 +6,30 @@ use App\Models\Datamobil;
 use App\Models\Identitas;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+
+//Tambahkan controller CloudinaryStorage
+use App\Http\Controllers\CloudinaryStorage;
 
 class RentalController extends Controller
 {
     public function index()
     {
-       $user = User::all();
-       $datauser = User::where('role', 'User')->count();
-       $datakasir = User::where('role', 'Kasir')->count();
-       $dataadmin = User::where('role', 'Admin')->count();
-       $role = [];
-       $user = [];
-       $kasir = [];
-       $admin = [];
+        $user = User::all();
+        $datauser = User::where('role', 'User')->count();
+        $datakasir = User::where('role', 'Kasir')->count();
+        $dataadmin = User::where('role', 'Admin')->count();
+        $role = [];
+        $user = [];
+        $kasir = [];
+        $admin = [];
 
-       foreach($user as $u){
-           $role[] = $u->role;
-       }
+        foreach ($user as $u) {
+            $role[] = $u->role;
+        }
 
-       $user[] = $datauser;
-       $kasir[] = $datakasir;
-       $admin[] = $dataadmin;
+        $user[] = $datauser;
+        $kasir[] = $datakasir;
+        $admin[] = $dataadmin;
 
         return view('admin.index', compact('role', 'user', 'kasir', 'admin'));
     }
@@ -79,6 +81,8 @@ class RentalController extends Controller
 
     public function store(Request $request)
     {
+        $image  = $request->file('gambar_mobil');
+        $result = CloudinaryStorage::upload($image->getRealPath(), $image->getClientOriginalName());
         // return dd($request);
         Datamobil::create([
             // 'id'            => $request->id,
@@ -86,7 +90,7 @@ class RentalController extends Controller
             'nopol_mobil'   => $request->nopol_mobil,
             'warna_mobil'   => $request->warna_mobil,
             'hargasewa_mobil' => $request->harga_sewa,
-            'gambar_mobil'  => $request->file('gambar_mobil')->store('image-mobil'),
+            'gambar_mobil'  => $result,
         ]);
         return redirect()->route('datamobil');
     }
@@ -104,14 +108,15 @@ class RentalController extends Controller
             return redirect()->back();
         } else {
             $mobil = Datamobil::where('id', $id)->first();
-            Storage::delete($mobil->gambar_mobil);
+            $image  = $request->file('foto_peminjam');
+            $result = CloudinaryStorage::upload($image->getRealPath(), $image->getClientOriginalName());
             $mobil->update([
                 'nama_mobil'      => $request->nama_mobil,
                 'nopol_mobil'     => $request->nopol_mobil,
                 'warna_mobil'     => $request->warna_mobil,
                 'hargasewa_mobil' => $request->hargasewa_mobil,
                 'warna_mobil'     => $request->warna_mobil,
-                'gambar_mobil'    => $request->file('gambar_mobil')->store('image-mobil'),
+                'gambar_mobil'    => $result,
             ]);
             return redirect()->back();
         }
@@ -120,7 +125,6 @@ class RentalController extends Controller
     public function destroy($id)
     {
         $mobil = Datamobil::findOrFail($id);
-        Storage::delete($mobil->gambar_mobil);
         $mobil->delete();
         return redirect()->route('datamobil');
     }

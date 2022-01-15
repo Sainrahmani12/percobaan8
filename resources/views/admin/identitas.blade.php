@@ -25,8 +25,8 @@
                 <td>{{$i->user->name}}</td>
                 <td>{{$i->datamobil->nama_mobil}}</td>
                 <td>{{$i->jaminan}}</td>
-                <td>{{$i->supir->nama}}</td>
-                <td><img src="{{url('storage/' .$i->foto_peminjam)}}" width="75" alt=""></td>
+                <td>{{$i->supir?->nama}}</td>
+                <td><img src="{{ $i->foto_peminjam }}" width="75" alt=""></td>
                 <td>
                     <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalidentitas{{$i->id}}"><i class="fas fa-pen ms-2"></i></button>
 

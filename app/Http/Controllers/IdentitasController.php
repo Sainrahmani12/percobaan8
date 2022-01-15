@@ -7,7 +7,9 @@ use App\Models\Identitas;
 use App\Models\Supir;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+
+//Tambahkan controller CloudinaryStorage
+use App\Http\Controllers\CloudinaryStorage;
 
 class IdentitasController extends Controller
 {
@@ -42,6 +44,9 @@ class IdentitasController extends Controller
      */
     public function store(Request $request)
     {
+        $image  = $request->file('foto_peminjam');
+        $result = CloudinaryStorage::upload($image->getRealPath(), $image->getClientOriginalName());
+
         Identitas::create([
             'id'            => $request->id,
             'user_id'          => Auth::user()->id,
@@ -50,7 +55,7 @@ class IdentitasController extends Controller
             'supir_id'         => $request->id,
             'peminjaman'    => $request->peminjaman,
             'pengembalian'  => $request->pengembalian,
-            'foto_peminjam' => $request->file('foto_peminjam')->store('image-peminjam'),
+            'foto_peminjam' => $result,
         ]);
         return redirect()->route('identitas');
     }
@@ -98,7 +103,8 @@ class IdentitasController extends Controller
             return redirect()->back();
         } else {
             $identitas = Identitas::where('id', $id)->first();
-            Storage::delete($identitas->foto_peminjam);
+            $image  = $request->file('foto_peminjam');
+            $result = CloudinaryStorage::upload($image->getRealPath(), $image->getClientOriginalName());
             $identitas->update([
                 'id'            => $request->id,
                 'user_id'          => $request->id,
@@ -107,7 +113,7 @@ class IdentitasController extends Controller
                 'supir_id'         => $request->id,
                 'peminjaman'    => $request->peminjaman,
                 'pengembalian'  => $request->pengembalian,
-                'foto_peminjam' => $request->file('foto_peminjam')->store('image-peminjam'),
+                'foto_peminjam' => $result,
             ]);
             return view('admin.identitas');
         }
@@ -122,7 +128,6 @@ class IdentitasController extends Controller
     public function destroy($id)
     {
         $identitas = Identitas::findOrFail($id);
-        Storage::delete($identitas->foto_peminjam);
         $identitas->delete();
         return redirect()->route('identitas');
     }

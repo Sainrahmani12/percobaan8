@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\datasupir;
 use App\Models\Supir;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+
+//Tambahkan controller CloudinaryStorage
+use App\Http\Controllers\CloudinaryStorage;
 
 class SupirController extends Controller
 {
@@ -38,11 +40,13 @@ class SupirController extends Controller
      */
     public function store(Request $request)
     {
+        $image  = $request->file('foto');
+        $result = CloudinaryStorage::upload($image->getRealPath(), $image->getClientOriginalName()); 
         Supir::create([
             'nama'   =>$request->nama,
             'alamat' =>$request->alamat,
             'umur'   =>$request->umur,
-            'foto'   =>$request->file('foto')->store('fotosupir'),
+            'foto'   =>$result,
         ]);
         return redirect()->route('datasupir');
     }
@@ -89,12 +93,13 @@ class SupirController extends Controller
             return redirect()->back();
         }else{
             $supir = Supir::where('id', $id)->first();
-            Storage::delete($supir->foto);
+            $image  = $request->file('foto');
+            $result = CloudinaryStorage::upload($image->getRealPath(), $image->getClientOriginalName()); 
             $supir->update([
                 'nama'     => $request->nama,
                 'alamat'     => $request->alamat,
                 'umur'     => $request->umur,
-                'foto'     => $request->file('foto')->store('fotosupir'),
+                'foto'     => $result,
             ]);
             return redirect()->back();
         }
@@ -109,7 +114,6 @@ class SupirController extends Controller
     public function destroy($id)
     {
         $supir=Supir::findOrFail($id);
-        Storage::delete($supir->fotosupir);
         $supir->delete();
         return redirect()->route('datasupir');
     }
