@@ -100,8 +100,8 @@
                 </div>
                 <div class="card-body text-center">
                     <h2 class="dt-mobil1">{{$i->user->name}}</h2>
-                    <p class="dt-mobil1 mt-3">{{$i->datamobil->nama_mobil}}</p>
-                    <p class="dt-mobil1 mt-3">{{$i->datamobil?->nopol_mobil}}</p>
+                    <p class="dt-mobil1 mt-3">{{$i->datamobil?->nama_mobil}}</p>
+                    <p class="dt-mobil1 mt-3">{{$i->datamobil->nopol_mobil}}</p>
                     <p class="dt-mobil1 mt--3">{{ number_format((int)$i->datamobil->hargasewa_mobil * (int)$i->jumlah_hari)}},000</p>
                 </div>
             </div>
