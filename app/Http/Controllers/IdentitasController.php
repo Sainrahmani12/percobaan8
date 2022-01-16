@@ -115,7 +115,7 @@ class IdentitasController extends Controller
                 'pengembalian'  => $request->pengembalian,
                 'foto_peminjam' => $result,
             ]);
-            return view('admin.identitas');
+            return redirect()->back();
         }
     }
 

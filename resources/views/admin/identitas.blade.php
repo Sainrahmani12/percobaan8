@@ -22,7 +22,7 @@
             <tr>
                 <td>{{$i->id}}</td>
                 <td>{{$i->nik}}</td>
-                <td>{{$i->user->name}}</td>
+                <td>{{$i->user?->name}}</td>
                 <td>{{$i->datamobil?->nama_mobil}}</td>
                 <td>{{$i->jaminan}}</td>
                 <td>{{$i->supir?->nama}}</td>
@@ -46,7 +46,7 @@
                                         @method('PUT')
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">Nama Peminjam</label>
-                                            <input type="text" name="user_id" value="{{$i->user->name}}" class="form-control">
+                                            <input type="text" name="user_id" value="{{$i->user?->name}}" class="form-control">
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleInputPassword1" class="form-label">Nama Mobil</label>

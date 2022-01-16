@@ -77,7 +77,7 @@
                 @foreach ($identitas as $i)
                 <tr>
                     <td>{{$i->id}}</td>
-                    <td>{{$i->user->name}}</td>
+                    <td>{{$i->user?->name}}</td>
                     <td>{{$i->datamobil?->nama_mobil}}</td>
                     <td>{{$i->peminjaman}}</td>
                     <td>{{$i->pengembalian}}</td>
@@ -99,7 +99,7 @@
                     <img src="{{ $i->foto_peminjam }}" class="card-img-top" alt="...">
                 </div>
                 <div class="card-body text-center">
-                    <h2 class="dt-mobil1">{{$i->user->name}}</h2>
+                    <h2 class="dt-mobil1">{{$i->user?->name}}</h2>
                     <p class="dt-mobil1 mt-3">{{$i->datamobil?->nama_mobil}}</p>
                     <p class="dt-mobil1 mt-3">{{$i->datamobil?->nopol_mobil}}</p>
                     <p class="dt-mobil1 mt--3">{{ number_format((int)$i->datamobil?->hargasewa_mobil * (int)$i->jumlah_hari)}},000</p>

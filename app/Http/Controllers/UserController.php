@@ -28,6 +28,8 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $image  = $request->file('foto_peminjam');
+            $result = CloudinaryStorage::upload($image->getRealPath(), $image->getClientOriginalName());
         Identitas::create([
             'nik'    =>$request->nik,
             'user_id'          =>Auth::user()->id,
@@ -37,7 +39,7 @@ class UserController extends Controller
             'peminjaman'    =>$request->peminjaman,
             'pengembalian'  =>$request->pengembalian,
             'jumlah_hari'  =>$request->jumlah_hari,
-            'foto_peminjam' =>$request->file('foto_peminjam')->store('image-peminjam'),
+            'foto_peminjam' =>$result,
         ]);
         return redirect()->route('user');
     }
